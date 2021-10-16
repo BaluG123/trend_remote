@@ -1,0 +1,35 @@
+{% extends 'testapp/base.html' %}
+{% load static %}
+{% block title %}
+memes
+{% endblock %}
+{% block content %}
+{% if mm %}
+<h2>#{{mm.name}}</h2>
+{% endif %}
+  <div class="container">
+      <span><img src="{% static 'images/memee.jpg' %}" width="320px" alt=""></span>
+      <p style="text-align: center;">Memes&Qotes</p>
+  </div><hr>
+  {% for meme in memes_list %}
+  {% if meme.mimage %}
+  <div class="container-fluid">
+          <div class="row" style="float: left;">
+              <div class="col-6 col-lg-3 col-xs-12 col-sm-6 col-md-3 col-xl-3">
+                  <img src="{{meme.mimage.url}}" width="320px" height="300px" alt="" style="border:1px solid black;margin-right:10px;border-radius: 10px;">
+                  <p style="margin-left: 5px;color:#3b5998;width: 310px;border-bottom: 1px solid rgb(137, 137, 143);border-radius: 4px;">{{meme.caption}}</p>
+              </div>
+          </div>
+      </div>
+      <!--
+      <div class="container">
+    {% for tag in meme.mms.all %}
+     <a href="{% url 'memes_tag' tag.slug %}"><p style="display: inline;"> <span>#{{tag.name}} </span></p> </a>
+      {% endfor %}</div><hr> -->
+      {% endif %}
+  {% endfor %}
+  <!--
+  <div>
+  <p style="margin:0 0 10px 0;" class="btn btn-sm">{% include 'testapp/paginator.html' with page=memes_list %}</p>
+</div>-->
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'testapp/base.html' %}
+{% load static %}
+{% block title %}
+videos
+{% endblock %}
+{% block content %}
+{% if vd %}
+<h2> videos tagged with '{{vd.name}}'</h2>
+{% endif %}
+  <div class="container">
+      <img src="{% static 'images/video2.jpg' %}" width="320px" alt="" >
+  </div><br>
+  {% for video in videos_list %}
+  {% if video.video %}
+  {% if video.vimage %}
+  <div class="container-fluid">
+          <div class="row" style="float: left;">
+              <div class="col-12 col-md-4 col-xl-3 col-lg-4 col-sm-12">
+                  <video src="{{video.video.url}}" poster="{{video.vimage.url}}"  height="auto"  playsinline controls preload="auto" style="margin-right:4px;border:1px solid black;width: 320px;height: 280px;"></video>
+                  <p style="width:320px;border-bottom: 1px solid rgb(137, 137, 143);border-radius: 2px;margin-left: 2px;">{{video.videotitle}}</p><br>
+              </div>
+</div>
+</div>
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  <!--
+  {% include 'testapp/paginator.html' with page=videos_list %}
+  -->
+{% endblock %}
